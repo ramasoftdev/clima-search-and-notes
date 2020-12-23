@@ -8,7 +8,8 @@ export const apiMiddleware = ({ dispatch, getState }) => next => action => {
     if (action.type !== constants.API) return next(action);
 
     dispatch({ type: constants.TOGGLE_LOADER });
-    const BASE_URL = 'http://localhost:3001';
+    // const BASE_URL = 'http://localhost:3001';
+    const BASE_URL = ENV["BASE-URL"];
     const AUTH_TOKEN = getState().user.token;
     if (AUTH_TOKEN)
         axios.defaults.headers.common['Authorization'] = `Bearer ${AUTH_TOKEN}`;
