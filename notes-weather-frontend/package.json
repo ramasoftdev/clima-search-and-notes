@@ -2,6 +2,10 @@
   "name": "notes-weather-frontend",
   "version": "0.1.0",
   "private": true,
+  "engines": {
+    "node": "12.x",
+    "npm": "6.x"
+  },
   "dependencies": {
     "@fortawesome/fontawesome-free": "^5.15.1",
     "@testing-library/jest-dom": "^5.11.4",
@@ -10,6 +14,7 @@
     "axios": "^0.20.0",
     "bootstrap": "^4.5.3",
     "chart.js": "^2.9.4",
+    "dotenv": "^8.2.0",
     "jquery": "^3.5.1",
     "node-sass": "^4.14.1",
     "perfect-scrollbar": "^1.5.0",

@@ -1,2 +1,7 @@
 /notes-weather-frontend/node_modules/
+/notes-weather-frontend/.eslintcache
+
+
 /notes-weather-backend/tmp/cache/bootsnap-compile-cache/
+/notes-weather-backend/log/development.log
+/notes-weather-backend/tmp/cache/bootsnap-load-path-cache

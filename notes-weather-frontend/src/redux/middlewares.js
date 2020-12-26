@@ -4,13 +4,15 @@ import { logoutUser, removeItemFromLocalStorage } from './actions/authActionCrea
 
 import axios from 'axios';
 
+require('dotenv').config()
+
 export const apiMiddleware = ({ dispatch, getState }) => next => action => {
     if (action.type !== constants.API) return next(action);
 
     dispatch({ type: constants.TOGGLE_LOADER });
-    // const BASE_URL = 'http://localhost:3001';
-    const BASE_URL = ENV["BASE-URL"];
+    const BASE_URL = process.env.REACT_APP_BASE_URL;
     const AUTH_TOKEN = getState().user.token;
+    
     if (AUTH_TOKEN)
         axios.defaults.headers.common['Authorization'] = `Bearer ${AUTH_TOKEN}`;
 
@@ -18,7 +20,7 @@ export const apiMiddleware = ({ dispatch, getState }) => next => action => {
 
     if (url === '/api/login')
         delete axios.defaults.headers.common["Authorization"];
-
+    
     axios({
         method,
         url: BASE_URL + url,
