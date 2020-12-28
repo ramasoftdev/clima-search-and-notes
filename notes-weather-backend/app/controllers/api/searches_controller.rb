@@ -72,13 +72,12 @@ class Api::SearchesController < ApplicationController
   end
 
   def set_search_with_pagination(myparams)
-    return Search.distinct.all.select("searches.id, searches.place_id, strftime('%m-%d-%Y %H:%M:%S',
-                                      searches.created_at) AS search_created_at, P.name AS place_name, WD.*")
+    return Search.distinct.all.select("searches.id, searches.place_id, TO_CHAR(searches.created_at, 'YYYY-MM-DD HH:MI:SS') AS search_created_at, P.name AS place_name, WD.*")
                  .joins("LEFT JOIN places P ON searches.place_id = P.id")
                  .joins("LEFT JOIN weather_details WD ON searches.id = WD.search_id")
                  .joins("LEFT JOIN users U ON searches.user_id = U.id")
                  .where("U.id = ?", current_user.id)
-                 .order(created_at: :DESC).paginate(myparams)
+                 .order("search_created_at DESC").paginate(myparams)
   end
 end
 
